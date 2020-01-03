@@ -15,10 +15,14 @@ MetricModel.belongsTo(AgentModel);
 
 await sequelize.authenticate();
 
-    const Agent = {};
-    const Metric = {};
-    return {
-        Agent,
-        Metric
-    }
+if(config.setup) {
+    await sequelize.sync({force: true});
+}
+
+const Agent = {};
+const Metric = {};
+return {
+    Agent,
+    Metric
+}
 }
